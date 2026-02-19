@@ -1,84 +1,115 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Reserva Privada</title>
-<style>
-body{
-  margin:0;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:linear-gradient(135deg,#1a1a1a,#400000);
-  font-family:Arial, sans-serif;
-  color:white;
-  text-align:center;
-  overflow:hidden;
-}
-.container{
-  animation:fadeIn 2s ease-in-out;
-}
-.heart{
-  font-size:90px;
-  animation:beat 1s infinite;
-}
-h1{
-  letter-spacing:2px;
-}
-button{
-  margin-top:25px;
-  padding:12px 30px;
-  font-size:18px;
-  border:none;
-  border-radius:30px;
-  cursor:pointer;
-  background:#ff0055;
-  color:white;
-  font-weight:bold;
-  transition:0.3s;
-}
-button:hover{
-  background:#ff4d88;
-  transform:scale(1.05);
-}
-@keyframes beat{
-  0%{transform:scale(1);}
-  50%{transform:scale(1.2);}
-  100%{transform:scale(1);}
-}
-@keyframes fadeIn{
-  from{opacity:0;}
-  to{opacity:1;}
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicel - Control de Pagos</title>
+    <style>
+        body { font-family: sans-serif; background: #f4f4f9; padding: 20px; color: #333; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #007bff; }
+        form { display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 10px; margin-bottom: 20px; }
+        input, button { padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
+        button { background: #28a745; color: white; cursor: pointer; border: none; }
+        button:hover { background: #218838; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { padding: 12px; border-bottom: 1px solid #eee; text-align: left; }
+        .status-ok { background: #d4edda; color: #155724; padding: 5px; border-radius: 4px; font-size: 0.8em; }
+        .status-warning { background: #fff3cd; color: #856404; padding: 5px; border-radius: 4px; font-weight: bold; }
+        .status-danger { background: #f8d7da; color: #721c24; padding: 5px; border-radius: 4px; font-weight: bold; }
+        .btn-delete { background: #dc3545; padding: 5px 10px; font-size: 0.8em; }
+    </style>
 </head>
 <body>
 
 <div class="container">
-  <h1>Reserva Exclusiva 💋</h1>
-  <p>Habitación privada. Luces bajas.  
-  Velas encendidas.  
-  Y una sorpresa esperando...</p>
-  
-  <div class="heart">🔥❤️🔥</div>
-  
-  <h2>¿Aceptás la invitación?</h2>
-  
-  <button onclick="mostrarMensaje()">Aceptar</button>
+    <h1>📅 Pagos Servicel</h1>
+    
+    <form id="paymentForm">
+        <input type="text" id="desc" placeholder="Ej: Antel, Alquiler..." required>
+        <input type="number" id="monto" placeholder="Monto $" required>
+        <input type="date" id="fecha" required>
+        <button type="submit">Agregar</button>
+    </form>
+
+    <table id="paymentTable">
+        <thead>
+            <tr>
+                <th>Servicio</th>
+                <th>Monto</th>
+                <th>Vencimiento</th>
+                <th>Estado</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+    </table>
 </div>
 
 <script>
-function mostrarMensaje(){
-  document.body.innerHTML = `
-    <div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#000;color:white;text-align:center;font-family:Arial">
-      <div>
-        <h1 style="font-size:40px;">Te espero esta noche... 😏🔥</h1>
-        <p style="font-size:20px;">Código de acceso: SOLO VOS 💘</p>
-      </div>
-    </div>
-  `;
-}
+    const form = document.getElementById('paymentForm');
+    const tableBody = document.getElementById('tableBody');
+
+    let payments = JSON.parse(localStorage.getItem('servicel_pagos')) || [];
+
+    function saveAndRender() {
+        localStorage.setItem('servicel_pagos', JSON.stringify(payments));
+        render();
+    }
+
+    function render() {
+        tableBody.innerHTML = '';
+        const hoy = new Date();
+        hoy.setHours(0,0,0,0);
+
+        payments.sort((a, b) => new Date(a.fecha) - new Date(b.fecha)).forEach((p, index) => {
+            const fechaVenc = new Date(p.fecha);
+            fechaVenc.setHours(24,0,0,0); // Ajuste zona horaria
+            
+            const diffTiempo = fechaVenc - hoy;
+            const diffDias = Math.ceil(diffTiempo / (1000 * 60 * 60 * 24));
+
+            let statusClass = 'status-ok';
+            let statusText = `Faltan ${diffDias} días`;
+
+            if (diffDias <= 0) {
+                statusClass = 'status-danger';
+                statusText = diffDias === 0 ? "¡VENCE HOY!" : "VENCIDO";
+            } else if (diffDias <= 3) {
+                statusClass = 'status-warning';
+                statusText = "Próximo (3 días)";
+            }
+
+            tableBody.innerHTML += `
+                <tr>
+                    <td>${p.desc}</td>
+                    <td>$${p.monto}</td>
+                    <td>${p.fecha}</td>
+                    <td><span class="${statusClass}">${statusText}</span></td>
+                    <td><button class="btn-delete" onclick="deletePayment(${index})">Eliminar</button></td>
+                </tr>
+            `;
+        });
+    }
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const newPayment = {
+            desc: document.getElementById('desc').value,
+            monto: document.getElementById('monto').value,
+            fecha: document.getElementById('fecha').value
+        };
+        payments.push(newPayment);
+        form.reset();
+        saveAndRender();
+    });
+
+    window.deletePayment = (index) => {
+        payments.splice(index, 1);
+        saveAndRender();
+    };
+
+    render();
 </script>
 
 </body>
