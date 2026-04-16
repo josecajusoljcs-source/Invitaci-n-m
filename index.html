@@ -12,7 +12,7 @@
   <meta property="og:description" content="Pantallas, baterías, puerto de carga, fallas de señal y microsoldadura. Atención rápida en Montevideo." />
   <meta property="og:url" content="https://reparacioncelulares.uy/" />
   <meta property="og:site_name" content="Servicel" />
-  <meta property="og:image" content="https://reparacioncelulares.uy/logo-servicel-claro.png" />  <meta name="twitter:card" content="summary_large_image" />
+  <meta property="og:image" content="https://reparacioncelulares.uy/logo-servicel.png" />  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Reparación de celulares en Montevideo | Servicel" />
   <meta name="twitter:description" content="Servicio técnico real, sin humo. Cambio de pantalla, batería, pin de carga y microsoldadura." />  <script type="application/ld+json">
   {
@@ -25,7 +25,7 @@
         "url": "https://reparacioncelulares.uy/",
         "telephone": "+59895514488",
         "email": "contacto@servicel.com.uy",
-        "image": "https://reparacioncelulares.uy/logo-servicel-claro.png",
+        "image": "https://reparacioncelulares.uy/logo-servicel.png",
         "description": "Servicio técnico de celulares en Montevideo. Reparación de iPhone, Samsung, Xiaomi, Motorola, Huawei y más. Cambio de pantalla, batería, pin de carga, fallas de señal y microsoldadura.",
         "priceRange": "$$",
         "address": {
@@ -98,11 +98,11 @@
       --muted: #cbd5e1;
       --ink: #101828;
       --soft: #eef2f6;
-      --soft-2: #f8fafc;
       --line: #e5e7eb;
       --orange: #f59e0b;
       --orange-2: #f28c36;
       --green: #22c55e;
+      --red: #ef4444;
       --shadow: 0 18px 40px rgba(2, 6, 23, 0.18);
       --radius: 24px;
       --max: 1180px;
@@ -125,7 +125,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(8,17,31,0.9);
+      background: rgba(8,17,31,0.92);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
@@ -148,6 +148,8 @@
       width: 52px;
       height: 52px;
       object-fit: contain;
+      border-radius: 12px;
+      flex-shrink: 0;
     }
     .topbar-actions {
       display: flex;
@@ -214,7 +216,7 @@
       position: relative;
       z-index: 1;
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
+      grid-template-columns: 1.15fr 0.85fr;
       gap: 34px;
       align-items: center;
       padding: 78px 0 92px;
@@ -233,7 +235,7 @@
     }
     h1 {
       margin: 0 0 18px;
-      font-size: clamp(2.5rem, 7vw, 5rem);
+      font-size: clamp(2.6rem, 7vw, 5.2rem);
       line-height: 0.94;
       letter-spacing: -0.05em;
       max-width: 760px;
@@ -390,10 +392,21 @@
       border-radius: 22px;
       padding: 22px;
       box-shadow: 0 10px 28px rgba(242,140,54,0.08);
+      position: relative;
+      overflow: hidden;
+    }
+    .problem-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -30px -30px auto;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, rgba(242,140,54,0.16), transparent 65%);
+      pointer-events: none;
     }
     .problem-card h3 { margin: 0 0 10px; font-size: 1.26rem; }
-    .problem-card p { margin: 0 0 14px; color: #6b7280; }
-    .problem-card a { color: #d56f18; font-weight: 900; }
+    .problem-card p { margin: 0 0 14px; color: #6b7280; position: relative; z-index: 1; }
+    .problem-card a { color: #d56f18; font-weight: 900; position: relative; z-index: 1; }
 
     .services-grid {
       display: grid;
@@ -410,10 +423,32 @@
       display: flex;
       flex-direction: column;
     }
-    .service-card img {
-      aspect-ratio: 4 / 3;
-      object-fit: cover;
+    .service-visual {
+      min-height: 190px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 22px;
+      color: #fff;
+      font-weight: 900;
+      font-size: 2.4rem;
+      line-height: 1;
     }
+    .service-visual small {
+      display: block;
+      font-size: 0.85rem;
+      line-height: 1.3;
+      font-weight: 800;
+      max-width: 130px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      opacity: 0.96;
+    }
+    .service-visual.screen { background: linear-gradient(135deg, #f28c36, #f59e0b); }
+    .service-visual.battery { background: linear-gradient(135deg, #0f172a, #1e293b); }
+    .service-visual.port { background: linear-gradient(135deg, #1d4ed8, #0f172a); }
+    .service-visual.micro { background: linear-gradient(135deg, #111827, #ef4444); }
+    .service-visual.signal { background: linear-gradient(135deg, #0f172a, #0ea5e9); }
     .service-content { padding: 20px; }
     .service-content h3 { margin: 0 0 10px; font-size: 1.36rem; line-height: 1.1; }
     .service-content p { margin: 0 0 14px; color: #4b5563; }
@@ -604,7 +639,7 @@
       font-weight: 900;
       color: #fff;
     }
-    .footer-brand img { width: 54px; height: 54px; object-fit: contain; }
+    .footer-brand img { width: 54px; height: 54px; object-fit: contain; border-radius: 12px; }
     .copy {
       border-top: 1px solid rgba(255,255,255,0.08);
       margin-top: 26px;
@@ -654,13 +689,14 @@
       .btn { width: 100%; }
       .section-light, .section-dark { padding: 64px 0; }
       .map-link, .map-link iframe { min-height: 300px; height: 300px; }
+      .service-visual { min-height: 150px; font-size: 2rem; }
     }
   </style></head>
 <body>
   <header class="topbar">
     <div class="container topbar-inner">
       <a class="brand" href="#inicio" aria-label="Ir al inicio de Servicel">
-        <img src="logo-servicel-oscuro.png" alt="Logo de Servicel" />
+        <img src="logo-servicel.png" alt="Logo de Servicel" />
         <span>SERVICEL</span>
       </a>
       <div class="topbar-actions">
@@ -673,10 +709,10 @@
       <div class="container hero-grid">
         <div>
           <div class="hero-badge">Especialistas en reparación de celulares en Montevideo</div>
-          <h1>Tu celular falló. <span class="accent">No lo maquilles:</span> arreglalo con técnicos que sí resuelven.</h1>
-          <p class="hero-lead">Cambio de pantalla, batería, pin de carga, fallas de señal, equipos mojados y microsoldadura. Atención rápida, diagnóstico claro y respuesta por WhatsApp para que no pierdas tiempo.</p><div class="hero-actions">
+          <h1>¿Tu celular falló? <span class="accent">Traelo hoy</span> y dejá de perder tiempo con talleres que adivinan.</h1>
+          <p class="hero-lead">Cambio de pantalla, batería, pin de carga, fallas de señal, equipos mojados y microsoldadura. Te hablamos claro, te damos una orientación real y te decimos qué conviene hacer.</p><div class="hero-actions">
         <a class="btn btn-primary" href="https://wa.me/59895514488?text=Hola%20Servicel,%20quiero%20precio%20para%20mi%20celular.%20Marca,%20modelo%20y%20falla:">Quiero precio por WhatsApp</a>
-        <a class="btn btn-dark" href="#servicios">Ver reparaciones</a>
+        <a class="btn btn-dark" href="#problemas">Ver si mi falla está acá</a>
       </div>
 
       <div class="urgency-row">
@@ -702,24 +738,24 @@
     </div>
 
     <aside class="hero-box" aria-label="Resumen de servicios y venta rápida">
-      <h2>Lo que más nos consultan todos los días</h2>
-      <p>Si tu falla está acá, ya podés escribirnos ahora. Si no está, igual la revisamos. El objetivo no es adornar: es darte una solución real.</p>
+      <h2>No prometemos magia. <br>Prometemos diagnóstico serio y trabajo bien hecho.</h2>
+      <p>Si el problema tiene solución, te lo decimos. Si no conviene, también. Eso te ahorra tiempo, plata y vueltas al santo botón.</p>
       <div class="quick-cards">
         <div class="quick-card">
           <div>📱</div>
-          <div><strong>Cambio de pantalla</strong><span>Roturas, líneas, manchas y táctil que no responde.</span></div>
+          <div><strong>Pantalla rota</strong><span>Golpes, líneas, manchas y táctil que no responde.</span></div>
         </div>
         <div class="quick-card">
           <div>🔋</div>
-          <div><strong>Cambio de batería</strong><span>Se descarga rápido, se apaga con porcentaje o se hincha.</span></div>
+          <div><strong>Batería agotada</strong><span>Se apaga con porcentaje, dura poco o se hincha.</span></div>
         </div>
         <div class="quick-card">
           <div>🔌</div>
-          <div><strong>Puerto de carga</strong><span>No carga, carga intermitente o el cable queda flojo.</span></div>
+          <div><strong>Puerto de carga</strong><span>No carga, carga intermitente o cable flojo.</span></div>
         </div>
         <div class="quick-card">
           <div>🛠️</div>
-          <div><strong>Microsoldadura y placa</strong><span>Sin señal, mojado, no enciende, reinicia o falla raro.</span></div>
+          <div><strong>Placa y microsoldadura</strong><span>Sin señal, mojado, no enciende o reinicia.</span></div>
         </div>
       </div>
       <a class="btn btn-primary" href="https://wa.me/59895514488?text=Hola%20Servicel,%20quiero%20hablar%20con%20un%20t%C3%A9cnico%20por%20la%20falla%20de%20mi%20celular">Hablar con un técnico ahora</a>
@@ -730,24 +766,24 @@
 <section class="section-light" id="prueba-social">
   <div class="container">
     <p class="eyebrow">Confianza</p>
-    <h2 class="section-title">Confianza que se nota <span class="accent">desde el primer contacto</span></h2>
-    <p class="section-subtitle">Elegir un taller no es solo ver precios. También importa la claridad, la confianza y que del otro lado haya alguien que realmente sepa lo que está haciendo.</p>
+    <h2 class="section-title">No alcanza con que te digan que son buenos. <span class="accent">Tenés que sentir confianza.</span></h2>
+    <p class="section-subtitle">Cuando alguien llega con el celular fallando, busca dos cosas: una solución real y alguien que hable claro. Esa combinación es la que hace que te elijan.</p>
 
     <div class="trust-grid">
       <article class="trust-card">
         <div class="rating">★★★★★</div>
         <p>“Me explicaron la falla de forma clara y me entregaron el equipo funcionando en muy poco tiempo.”</p>
-        <strong>Cliente Servicel</strong>
+        <strong>Cliente real</strong>
       </article>
       <article class="trust-card">
         <div class="rating">★★★★★</div>
         <p>“Había pasado por otro taller y acá encontraron el problema real. Eso me dio mucha confianza.”</p>
-        <strong>Cliente Servicel</strong>
+        <strong>Cliente real</strong>
       </article>
       <article class="trust-card">
         <div class="rating">★★★★★</div>
         <p>“Buen trato, explicación clara y presupuesto transparente. Justo lo que uno espera de un servicio serio.”</p>
-        <strong>Cliente Servicel</strong>
+        <strong>Cliente real</strong>
       </article>
     </div>
   </div>
@@ -757,7 +793,7 @@
   <div class="container">
     <p class="eyebrow">Qué falla tiene tu celular</p>
     <h2 class="section-title">Decinos qué le pasa a tu equipo y <span class="accent">te orientamos rápido</span></h2>
-    <p class="section-subtitle">Si tu equipo presenta alguna de estas fallas, podemos orientarte rápido y decirte cuál es el mejor camino para resolverlo.</p>
+    <p class="section-subtitle">Si tu celular presenta alguna de estas fallas, podés escribirnos ahora mismo y decirnos marca, modelo y problema.</p>
 
     <div class="problem-grid">
       <article class="problem-card">
@@ -782,12 +818,12 @@
       </article>
       <article class="problem-card">
         <h3>Sin señal, WiFi o Bluetooth</h3>
-        <p>Problemas de cobertura, antena, baseband o conectividad inestable.</p>
+        <p>Problemas de cobertura, baseband o conectividad inestable.</p>
         <a href="https://wa.me/59895514488?text=Hola%20Servicel,%20mi%20celular%20tiene%20problemas%20de%20se%C3%B1al%20o%20wifi">Consultar esta falla</a>
       </article>
       <article class="problem-card">
         <h3>Celular mojado</h3>
-        <p>Si se mojó, no improvises. Lo peor suele empezar después.</p>
+        <p>Si se mojó, no improvises. Cuanto antes se revise, más chances hay de salvarlo.</p>
         <a href="https://wa.me/59895514488?text=Hola%20Servicel,%20mi%20celular%20se%20moj%C3%B3">Consultar esta falla</a>
       </article>
     </div>
@@ -797,12 +833,12 @@
 <section class="section-light" id="servicios">
   <div class="container">
     <p class="eyebrow">Servicios más pedidos</p>
-    <h2 class="section-title">Servicios más solicitados <span class="accent">en nuestro taller</span></h2>
-    <p class="section-subtitle">Trabajamos las fallas más comunes y también los casos complejos que necesitan experiencia técnica real, repuestos adecuados y diagnóstico claro.</p>
+    <h2 class="section-title">Los trabajos que más <span class="accent">mueven consultas y ventas</span></h2>
+    <p class="section-subtitle">Eliminé las imágenes que te estaban rompiendo la web. Así queda más sólido ahora, y después solo reemplazamos por fotos reales del taller cuando las tengas.</p>
 
     <div class="services-grid">
       <article class="service-card">
-        <img src="https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=900&q=80" alt="Técnico reemplazando una pantalla de celular dañada" />
+        <div class="service-visual screen"><small>Pantalla rota<br>Display / táctil</small><span>📱</span></div>
         <div class="service-content">
           <h3>Cambio de pantalla</h3>
           <p>Roturas, líneas, manchas y táctil fallando en iPhone, Samsung, Xiaomi y más.</p>
@@ -810,7 +846,7 @@
         </div>
       </article>
       <article class="service-card">
-        <img src="https://images.unsplash.com/photo-1601972599720-36938d4ecd31?auto=format&fit=crop&w=900&q=80" alt="Reparación interna de batería en smartphone" />
+        <div class="service-visual battery"><small>Rinde poco<br>Se apaga sola</small><span>🔋</span></div>
         <div class="service-content">
           <h3>Cambio de batería</h3>
           <p>Cuando ya no dura, se apaga antes de tiempo o empieza a hincharse.</p>
@@ -818,7 +854,7 @@
         </div>
       </article>
       <article class="service-card">
-        <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=900&q=80" alt="Detalle de reparación del puerto de carga de un celular" />
+        <div class="service-visual port"><small>No carga<br>Cable flojo</small><span>🔌</span></div>
         <div class="service-content">
           <h3>Puerto de carga</h3>
           <p>Pin flojo, carga lenta, carga intermitente o equipo que no detecta cable.</p>
@@ -826,7 +862,7 @@
         </div>
       </article>
       <article class="service-card">
-        <img src="https://images.unsplash.com/photo-1588702547919-26089e690ecc?auto=format&fit=crop&w=900&q=80" alt="Trabajo de microsoldadura sobre placa de celular" />
+        <div class="service-visual micro"><small>Placa / señal<br>No enciende</small><span>🛠️</span></div>
         <div class="service-content">
           <h3>Microsoldadura</h3>
           <p>Fallas complejas de placa, equipos mojados, sin señal o que no encienden.</p>
@@ -834,7 +870,7 @@
         </div>
       </article>
       <article class="service-card">
-        <img src="https://images.unsplash.com/photo-1512054502232-10a0a035d672?auto=format&fit=crop&w=900&q=80" alt="Diagnóstico técnico de conectividad y señal en smartphone" />
+        <div class="service-visual signal"><small>Señal / WiFi<br>Bluetooth</small><span>📡</span></div>
         <div class="service-content">
           <h3>Señal / WiFi / Bluetooth</h3>
           <p>Cuando la conexión falla y el problema no es el chip, el router o la antena externa.</p>
@@ -860,12 +896,12 @@
       <article class="reason">
         <div class="reason-icon">🧾</div>
         <h3>Diagnóstico claro</h3>
-        <p>Te explicamos qué conviene hacer y qué no. Eso genera cierres mejores y clientes más tranquilos.</p>
+        <p>Te explicamos qué conviene hacer y qué no. Eso genera mejores decisiones y más confianza.</p>
       </article>
       <article class="reason">
         <div class="reason-icon">🛠️</div>
         <h3>Microsoldadura real</h3>
-        <p>No solo cambio de módulos. También hay manos para trabajos más finos y fallas de placa.</p>
+        <p>No solo cambio de módulos. También hay experiencia para trabajos finos y fallas complejas.</p>
       </article>
       <article class="reason">
         <div class="reason-icon">🚚</div>
@@ -895,7 +931,7 @@
     <div class="seo-layout">
       <div class="seo-copy">
         <p><strong>Servicel es un servicio técnico de celulares en Montevideo</strong> para personas que necesitan una solución rápida, clara y profesional. Trabajamos con iPhone, Samsung, Xiaomi, Redmi, Motorola, Huawei, Honor y otros equipos sujetos a revisión técnica. Si tu celular tiene la pantalla rota, la batería agotada, problemas de carga o una falla interna más compleja, la idea es simple: revisar bien, explicar bien y reparar con criterio.</p>
-        <p>Cuando alguien busca <strong>reparación de celulares en Montevideo</strong>, <strong>service iPhone Montevideo</strong>, <strong>cambio de pantalla</strong>, <strong>cambio de batería</strong>, <strong>puerto de carga</strong> o <strong>microsoldadura</strong>, casi nunca está comparando poesía. Está buscando un lugar serio, con ubicación real, WhatsApp activo y capacidad de resolver. Por eso esta landing apunta directo a eso: que el cliente entienda rápido qué hacés y te escriba sin perder tiempo.</p>
+        <p>Cuando alguien busca <strong>reparación de celulares en Montevideo</strong>, <strong>service iPhone Montevideo</strong>, <strong>cambio de pantalla</strong>, <strong>cambio de batería</strong>, <strong>puerto de carga</strong> o <strong>microsoldadura</strong>, está buscando un lugar serio, con ubicación real, WhatsApp activo y capacidad de resolver. Por eso esta landing apunta directo a eso: que el cliente entienda rápido qué hacés y te escriba sin perder tiempo.</p>
         <p>Además de las reparaciones frecuentes, Servicel también trabaja equipos con daños por humedad, fallas de señal, WiFi o Bluetooth, reinicios, consumo anormal y problemas de placa. En los casos simples, muchos trabajos pueden salir en el día. En los complejos, se requiere diagnóstico técnico. La diferencia es que acá se habla claro desde el principio.</p>
         <p>Si estás en el Centro o en cualquier zona de Montevideo, podés acercarte al local en <strong>Convención 1400</strong> o consultar por WhatsApp con marca, modelo y falla. Cuando se puede orientar con un estimado, se hace. Cuando hace falta revisar, también se dice. Esa mezcla de honestidad, rapidez y experiencia técnica es lo que vuelve esta página más útil para Google y mucho más fuerte para vender.</p>
       </div>
@@ -946,8 +982,8 @@
 <section class="section-dark" id="contacto">
   <div class="container">
     <p class="eyebrow">Contacto</p>
-    <h2 class="section-title">Estamos en Montevideo y listos para <span class="accent">ayudarte hoy mismo</span></h2>
-    <p class="section-subtitle">Visitá nuestro local en el Centro de Montevideo o abrí la ubicación en Google Maps para llegar directo y sin vueltas.</p>
+    <h2 class="section-title">Estamos en Montevideo y listos para <span class="accent">resolver tu problema hoy mismo</span></h2>
+    <p class="section-subtitle">Tocá el mapa y abrí Google Maps para llegar directo, sin vueltas.</p>
 
     <div class="contact-grid">
       <article class="contact-card">
@@ -985,7 +1021,7 @@
       <div class="footer-grid">
         <div>
           <div class="footer-brand">
-            <img src="logo-servicel-oscuro.png" alt="Logo de Servicel" />
+            <img src="logo-servicel.png" alt="Logo de Servicel" />
             <span>SERVICEL</span>
           </div>
           <p>Servicio técnico de celulares en Montevideo. Pantallas, baterías, pin de carga, señal, WiFi, Bluetooth y microsoldadura.</p>
