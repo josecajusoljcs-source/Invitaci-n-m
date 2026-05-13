@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Maqueta Landing Reparación de Celulares Servicel v6.3</title>
+  <title>Maqueta Landing Reparación de Celulares Servicel v6.4</title>
 
   <!--
-    Maqueta visual v6.3 para GitHub / Elementor HTML.
-    Objetivo: mejorar diseño, contraste y lectura.
+    Maqueta visual v6.4 para GitHub / Elementor HTML.
+    Objetivo: subir intención de clic, mejorar llamadas a la acción y hacer tarjetas más vivas.
     No toca SEO dinámico, metas, schema ni productos REP.
   -->
 
@@ -15,6 +15,7 @@
     :root {
       --sv-orange: #f59a12;
       --sv-orange-2: #ffb238;
+      --sv-orange-3: #ffcf7a;
       --sv-dark: #07111f;
       --sv-dark-2: #101b2d;
       --sv-card: #101b2b;
@@ -95,23 +96,25 @@
       min-height: 54px;
       padding: 15px 24px;
       border-radius: 999px;
-      font-weight: 900;
+      font-weight: 950;
       font-size: 16px;
-      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
       cursor: pointer;
       border: 0;
       white-space: nowrap;
+      position: relative;
+      overflow: hidden;
     }
 
     .sv-btn:hover { transform: translateY(-2px); }
 
     .sv-btn.orange {
-      background: var(--sv-orange);
+      background: linear-gradient(135deg, var(--sv-orange), var(--sv-orange-2));
       color: #101010;
-      box-shadow: 0 18px 40px rgba(245, 154, 18, .28);
+      box-shadow: 0 18px 40px rgba(245, 154, 18, .30);
     }
 
-    .sv-btn.orange:hover { background: #ffad25; }
+    .sv-btn.orange:hover { box-shadow: 0 24px 54px rgba(245, 154, 18, .38); }
 
     .sv-btn.dark {
       background: var(--sv-dark);
@@ -129,6 +132,31 @@
       color: #fff;
       background: rgba(255,255,255,.08);
       border: 1px solid rgba(255,255,255,.25);
+    }
+
+    .sv-btn.call {
+      color: #fff;
+      background: rgba(255,255,255,.11);
+      border: 1px solid rgba(255,255,255,.34);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.04);
+    }
+
+    .sv-btn.call::before {
+      content: "☎";
+      display: inline-grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      margin-right: 10px;
+      border-radius: 999px;
+      color: #111;
+      background: var(--sv-orange-2);
+      box-shadow: 0 0 0 6px rgba(245,154,18,.13);
+    }
+
+    .sv-btn.call:hover {
+      border-color: var(--sv-orange-2);
+      box-shadow: 0 20px 44px rgba(245,154,18,.18);
     }
 
     /* HERO */
@@ -353,7 +381,7 @@
       font-size: 14px;
     }
 
-    /* SERVICE CARDS - v6.3 mejor contraste */
+    /* SERVICE CARDS - v6.4 más clicables */
     .sv-services-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -362,26 +390,26 @@
 
     .sv-service-card {
       position: relative;
-      min-height: 278px;
+      min-height: 300px;
       padding: 26px;
       color: #fff;
       background:
-        radial-gradient(circle at 104% 96%, rgba(245,154,18,.24), transparent 30%),
+        radial-gradient(circle at 104% 96%, rgba(245,154,18,.30), transparent 30%),
         linear-gradient(145deg, #07111f 0%, #111c2e 100%);
       border-radius: 24px;
       overflow: hidden;
       box-shadow: 0 22px 54px rgba(7,17,31,.18);
       transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
-      border: 1px solid rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.09);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
 
     .sv-service-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 30px 70px rgba(7,17,31,.25);
-      border-color: rgba(245,154,18,.55);
+      transform: translateY(-6px);
+      box-shadow: 0 34px 80px rgba(7,17,31,.29);
+      border-color: rgba(245,154,18,.72);
     }
 
     .sv-service-card::before {
@@ -390,7 +418,7 @@
       left: 0;
       top: 0;
       width: 100%;
-      height: 6px;
+      height: 7px;
       background: linear-gradient(90deg, var(--sv-orange), var(--sv-orange-2));
     }
 
@@ -399,8 +427,8 @@
       position: absolute;
       right: -58px;
       bottom: -58px;
-      width: 170px;
-      height: 170px;
+      width: 176px;
+      height: 176px;
       border-radius: 50%;
       background: rgba(245,154,18,.18);
       pointer-events: none;
@@ -413,19 +441,19 @@
       justify-content: space-between;
       gap: 14px;
       align-items: flex-start;
-      margin-bottom: 42px;
+      margin-bottom: 44px;
     }
 
     .sv-icon {
-      width: 54px;
-      height: 54px;
-      border-radius: 16px;
+      width: 56px;
+      height: 56px;
+      border-radius: 17px;
       display: grid;
       place-items: center;
-      background: var(--sv-orange);
+      background: linear-gradient(135deg, var(--sv-orange), var(--sv-orange-2));
       color: var(--sv-dark);
       font-size: 25px;
-      box-shadow: 0 16px 32px rgba(245,154,18,.22);
+      box-shadow: 0 16px 32px rgba(245,154,18,.25);
       flex: 0 0 auto;
     }
 
@@ -435,29 +463,36 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 10px 14px;
-      border: 1px solid rgba(255,255,255,.22);
+      padding: 11px 15px;
+      border: 1px solid rgba(255,255,255,.26);
       border-radius: 999px;
       color: #fff;
-      font-weight: 900;
+      font-weight: 950;
       font-size: 14px;
-      background: rgba(255,255,255,.08);
+      background: rgba(255,255,255,.10);
       backdrop-filter: blur(8px);
+      transition: background .2s ease, color .2s ease, border-color .2s ease;
+    }
+
+    .sv-service-card:hover .sv-card-link {
+      background: var(--sv-orange);
+      color: #111;
+      border-color: var(--sv-orange);
     }
 
     .sv-service-card h3 {
       position: relative;
       z-index: 2;
-      margin: 0 0 14px;
+      margin: 0 0 13px;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-      font-size: clamp(27px, 2.6vw, 36px);
+      font-size: clamp(28px, 2.55vw, 38px);
       line-height: 1.02;
-      letter-spacing: -.035em;
+      letter-spacing: -.045em;
       font-weight: 1000;
       text-transform: none;
       color: #fff;
       text-wrap: balance;
-      text-shadow: 0 2px 0 rgba(0,0,0,.15);
+      text-shadow: 0 2px 0 rgba(0,0,0,.16);
     }
 
     .sv-service-card p {
@@ -466,8 +501,8 @@
       margin: 0;
       color: rgba(255,255,255,.88);
       font-size: 18px;
-      max-width: 330px;
-      font-weight: 500;
+      max-width: 340px;
+      font-weight: 520;
     }
 
     .sv-service-card .sv-card-body {
@@ -475,7 +510,97 @@
       z-index: 2;
     }
 
-    /* BRAND SECTION - v6.3 más legible */
+    .sv-card-micro {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      color: var(--sv-orange-2);
+      font-size: 14px;
+      font-weight: 950;
+    }
+
+    .sv-card-micro::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 5px rgba(34,197,94,.12);
+    }
+
+    /* QUICK CTA */
+    .sv-quick-cta {
+      margin-top: 26px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .sv-quick-card {
+      position: relative;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 18px;
+      padding: 22px;
+      border-radius: 24px;
+      background: #fff;
+      border: 1px solid rgba(7,17,31,.08);
+      box-shadow: 0 20px 50px rgba(7,17,31,.09);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+
+    .sv-quick-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(245,154,18,.55);
+      box-shadow: 0 28px 64px rgba(7,17,31,.14);
+    }
+
+    .sv-quick-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      background: #fff3df;
+      color: var(--sv-orange);
+      font-size: 25px;
+      font-weight: 950;
+    }
+
+    .sv-quick-card strong {
+      display: block;
+      color: var(--sv-dark);
+      font-size: 21px;
+      margin-bottom: 3px;
+    }
+
+    .sv-quick-card span {
+      color: #516071;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .sv-quick-action {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 150px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      background: var(--sv-dark);
+      color: #fff;
+      font-weight: 950;
+      font-size: 14px;
+    }
+
+    .sv-quick-card.phone .sv-quick-action {
+      background: linear-gradient(135deg, var(--sv-orange), var(--sv-orange-2));
+      color: #111;
+    }
+
+    /* BRAND SECTION - v6.4 */
     .sv-brand-zone {
       background:
         radial-gradient(circle at 95% 0%, rgba(245,154,18,.20), transparent 28%),
@@ -519,7 +644,7 @@
     }
 
     .sv-brand-card {
-      min-height: 230px;
+      min-height: 238px;
       padding: 24px;
       border-radius: 22px;
       background: rgba(255,255,255,.065);
@@ -528,6 +653,19 @@
       flex-direction: column;
       justify-content: space-between;
       transition: transform .2s ease, background .2s ease, border-color .2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sv-brand-card::after {
+      content: "";
+      position: absolute;
+      right: -48px;
+      bottom: -48px;
+      width: 132px;
+      height: 132px;
+      border-radius: 50%;
+      background: rgba(245,154,18,.14);
     }
 
     .sv-brand-card:hover {
@@ -537,17 +675,21 @@
     }
 
     .sv-brand-card h3 {
+      position: relative;
+      z-index: 2;
       margin: 0 0 10px;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-      font-size: 28px;
+      font-size: 30px;
       line-height: 1.05;
-      letter-spacing: -.035em;
+      letter-spacing: -.04em;
       font-weight: 1000;
       text-transform: none;
       color: #fff;
     }
 
     .sv-brand-card p {
+      position: relative;
+      z-index: 2;
       margin: 0;
       color: rgba(255,255,255,.86);
       font-size: 16px;
@@ -555,6 +697,8 @@
     }
 
     .sv-pill {
+      position: relative;
+      z-index: 2;
       display: inline-flex;
       width: fit-content;
       margin-bottom: 18px;
@@ -569,6 +713,8 @@
 
     .sv-brand-card a,
     .sv-brand-card span:last-child {
+      position: relative;
+      z-index: 2;
       margin-top: 18px;
       color: var(--sv-orange-2);
       font-weight: 950;
@@ -604,7 +750,11 @@
 
     .sv-step h3 {
       margin: 0 0 12px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
       font-size: 28px;
+      line-height: 1.05;
+      letter-spacing: -.03em;
+      font-weight: 1000;
       color: var(--sv-dark);
     }
 
@@ -629,7 +779,11 @@
 
     .sv-cta-strip h2 {
       margin: 0 0 8px;
-      font-size: clamp(28px, 3.6vw, 48px);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      font-size: clamp(30px, 3.4vw, 48px);
+      line-height: 1.05;
+      letter-spacing: -.045em;
+      font-weight: 1000;
       color: var(--sv-dark);
     }
 
@@ -695,7 +849,11 @@
 
     .sv-final h2 {
       margin: 0 0 14px;
-      font-size: clamp(42px, 5vw, 72px);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      font-size: clamp(38px, 5vw, 68px);
+      line-height: 1;
+      letter-spacing: -.055em;
+      font-weight: 1000;
       color: #111827;
     }
 
@@ -703,7 +861,7 @@
       margin: 0;
       max-width: 790px;
       font-size: 20px;
-      font-weight: 600;
+      font-weight: 650;
     }
 
     .sv-final .sv-btn.dark { min-width: 260px; }
@@ -732,7 +890,8 @@
       .sv-hero-phone { min-height: 420px; }
 
       .sv-proof-grid,
-      .sv-brand-grid { grid-template-columns: repeat(2, 1fr); }
+      .sv-brand-grid,
+      .sv-quick-cta { grid-template-columns: repeat(2, 1fr); }
 
       .sv-services-grid,
       .sv-process-grid { grid-template-columns: 1fr 1fr; }
@@ -755,7 +914,8 @@
       .sv-proof-grid,
       .sv-services-grid,
       .sv-brand-grid,
-      .sv-process-grid { grid-template-columns: 1fr; }
+      .sv-process-grid,
+      .sv-quick-cta { grid-template-columns: 1fr; }
 
       .sv-proof { min-height: auto; }
       .sv-section { padding: 56px 0; }
@@ -781,6 +941,15 @@
 
       .sv-service-card { min-height: 250px; }
       .sv-service-card h3 { font-size: 30px; }
+
+      .sv-quick-card {
+        grid-template-columns: auto 1fr;
+      }
+
+      .sv-quick-action {
+        grid-column: 1 / -1;
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -802,7 +971,7 @@
           <div class="sv-btns">
             <a class="sv-btn orange" href="https://wa.me/59895514488?text=Hola%20Servicel%2C%20quiero%20consultar%20por%20una%20reparaci%C3%B3n%20de%20celular" target="_blank" rel="noopener">Consultar por WhatsApp</a>
             <a class="sv-btn light" href="#servicios">Ver reparaciones</a>
-            <a class="sv-btn ghost" href="tel:095514488">Llamar</a>
+            <a class="sv-btn call" href="tel:095514488">Llamar ahora</a>
           </div>
         </div>
 
@@ -825,6 +994,23 @@
       </div>
     </section>
 
+    <section class="sv-section compact">
+      <div class="sv-wrap">
+        <div class="sv-quick-cta">
+          <a class="sv-quick-card phone" href="tel:095514488">
+            <div class="sv-quick-icon">☎</div>
+            <div><strong>¿Preferís llamar?</strong><span>Toque directo al 095 514 488.</span></div>
+            <div class="sv-quick-action">Llamar ahora</div>
+          </a>
+          <a class="sv-quick-card" href="https://wa.me/59895514488?text=Hola%20Servicel%2C%20quiero%20consultar%20por%20una%20falla%20en%20mi%20celular" target="_blank" rel="noopener">
+            <div class="sv-quick-icon">💬</div>
+            <div><strong>Consulta rápida por WhatsApp</strong><span>Mandanos modelo, foto y síntoma.</span></div>
+            <div class="sv-quick-action">Escribir</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
     <section id="servicios" class="sv-section">
       <div class="sv-wrap">
         <div class="sv-section-head">
@@ -841,32 +1027,32 @@
         <div class="sv-services-grid">
           <a class="sv-service-card" href="https://servicel.com.uy/cambio-de-pantalla/">
             <div class="sv-card-top"><div class="sv-icon">📱</div><span class="sv-card-link">Consultar servicio →</span></div>
-            <div class="sv-card-body"><h3>Cambio de pantalla</h3><p>Pantalla rota, líneas, manchas, imagen negra o táctil sin respuesta.</p></div>
+            <div class="sv-card-body"><h3>Cambio de pantalla</h3><p>Pantalla rota, líneas, manchas, imagen negra o táctil sin respuesta.</p><span class="sv-card-micro">Ideal para pantalla rota o sin imagen</span></div>
           </a>
 
           <a class="sv-service-card" href="https://servicel.com.uy/cambio-de-bateria/">
             <div class="sv-card-top"><div class="sv-icon">🔋</div><span class="sv-card-link">Consultar servicio →</span></div>
-            <div class="sv-card-body"><h3>Cambio de batería</h3><p>Baja autonomía, porcentaje inestable, reinicios o apagados repentinos.</p></div>
+            <div class="sv-card-body"><h3>Cambio de batería</h3><p>Baja autonomía, porcentaje inestable, reinicios o apagados repentinos.</p><span class="sv-card-micro">Consultá por modelo y disponibilidad</span></div>
           </a>
 
           <a class="sv-service-card" href="https://servicel.com.uy/cambio-de-puerto-de-carga-conector/">
             <div class="sv-card-top"><div class="sv-icon">🔌</div><span class="sv-card-link">Consultar servicio →</span></div>
-            <div class="sv-card-body"><h3>Puerto de carga</h3><p>No carga, falso contacto, carga lenta, conector flojo o falla de flex.</p></div>
+            <div class="sv-card-body"><h3>Puerto de carga</h3><p>No carga, falso contacto, carga lenta, conector flojo o falla de flex.</p><span class="sv-card-micro">Revisamos antes de cambiar</span></div>
           </a>
 
           <a class="sv-service-card" href="https://servicel.com.uy/reparacion-de-placa-microsoldadura/">
             <div class="sv-card-top"><div class="sv-icon">🧠</div><span class="sv-card-link">Ver placa →</span></div>
-            <div class="sv-card-body"><h3>Placa y microsoldadura</h3><p>Equipos mojados, sin señal, con consumo, reinicios o que no encienden.</p></div>
+            <div class="sv-card-body"><h3>Placa y microsoldadura</h3><p>Equipos mojados, sin señal, con consumo, reinicios o que no encienden.</p><span class="sv-card-micro">Para fallas complejas</span></div>
           </a>
 
           <a class="sv-service-card" href="https://wa.me/59895514488?text=Hola%20Servicel%2C%20tengo%20problemas%20de%20se%C3%B1al%20WiFi%20o%20Bluetooth%20en%20mi%20celular" target="_blank" rel="noopener">
             <div class="sv-card-top"><div class="sv-icon">📶</div><span class="sv-card-link">Consultar →</span></div>
-            <div class="sv-card-body"><h3>Señal, WiFi y Bluetooth</h3><p>Problemas de red, antena, señal débil o conexiones inestables.</p></div>
+            <div class="sv-card-body"><h3>Señal, WiFi y Bluetooth</h3><p>Problemas de red, antena, señal débil o conexiones inestables.</p><span class="sv-card-micro">Contanos el síntoma exacto</span></div>
           </a>
 
           <a class="sv-service-card" href="https://wa.me/59895514488?text=Hola%20Servicel%2C%20no%20s%C3%A9%20qu%C3%A9%20falla%20tiene%20mi%20celular%20y%20quiero%20orientaci%C3%B3n" target="_blank" rel="noopener">
             <div class="sv-card-top"><div class="sv-icon">💬</div><span class="sv-card-link">Consultar ahora →</span></div>
-            <div class="sv-card-body"><h3>No sé qué falla tiene</h3><p>Mandanos modelo, foto y síntoma. Te orientamos antes de venir.</p></div>
+            <div class="sv-card-body"><h3>No sé qué falla tiene</h3><p>Mandanos modelo, foto y síntoma. Te orientamos antes de venir.</p><span class="sv-card-micro">Diagnóstico antes de gastar</span></div>
           </a>
         </div>
       </div>
@@ -912,9 +1098,9 @@
         </div>
 
         <div class="sv-process-grid">
-          <div class="sv-step"><b>1</b><h3 class="sv-title-font">Nos escribís</h3><p>Mandanos por WhatsApp el modelo exacto y el problema que tiene el equipo.</p></div>
-          <div class="sv-step"><b>2</b><h3 class="sv-title-font">Te orientamos</h3><p>Te indicamos qué conviene revisar, si hay disponibilidad y cómo seguir.</p></div>
-          <div class="sv-step"><b>3</b><h3 class="sv-title-font">Avanzamos</h3><p>Confirmamos presupuesto, tiempo estimado y garantía antes de realizar el trabajo.</p></div>
+          <div class="sv-step"><b>1</b><h3>Nos escribís</h3><p>Mandanos por WhatsApp el modelo exacto y el problema que tiene el equipo.</p></div>
+          <div class="sv-step"><b>2</b><h3>Te orientamos</h3><p>Te indicamos qué conviene revisar, si hay disponibilidad y cómo seguir.</p></div>
+          <div class="sv-step"><b>3</b><h3>Avanzamos</h3><p>Confirmamos presupuesto, tiempo estimado y garantía antes de realizar el trabajo.</p></div>
         </div>
       </div>
     </section>
@@ -922,7 +1108,7 @@
     <section class="sv-section compact">
       <div class="sv-wrap">
         <div class="sv-cta-strip">
-          <div><h2 class="sv-title-font">¿No sabés si es pantalla, batería o placa?</h2><p>Ahí está el valor de Servicel: primero diagnosticamos y después te recomendamos la mejor opción. Sin vender humo, sin cambiar piezas a ciegas.</p></div>
+          <div><h2>¿No sabés si es pantalla, batería o placa?</h2><p>Ahí está el valor de Servicel: primero diagnosticamos y después te recomendamos la mejor opción. Sin vender humo, sin cambiar piezas a ciegas.</p></div>
           <a class="sv-btn orange" href="https://wa.me/59895514488?text=Hola%20Servicel%2C%20quiero%20que%20me%20orienten%20con%20una%20falla%20en%20mi%20celular" target="_blank" rel="noopener">Hablar con un técnico</a>
         </div>
       </div>
@@ -948,7 +1134,7 @@
       <div class="sv-wrap">
         <div class="sv-final">
           <div>
-            <h2 class="sv-title-font">Traé tu consulta hoy</h2>
+            <h2>Traé tu consulta hoy</h2>
             <p>Si tu iPhone, Samsung, Xiaomi, Redmi o Motorola tiene pantalla rota, batería agotada, problemas de carga o fallas complejas, escribinos y te orientamos con una solución real.</p>
             <div class="sv-footer-note">Local técnico en Montevideo: Convención 1400 esquina Colonia. Atención por WhatsApp para confirmar modelo, disponibilidad y tiempo estimado.</div>
           </div>
